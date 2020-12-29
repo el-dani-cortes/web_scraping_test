@@ -4,12 +4,13 @@ import requests
 from bs4 import BeautifulSoup as bs
 from selenium import webdriver
 
+#Options for chrome
 coptions = webdriver.ChromeOptions()
 #coptions.add_argument('--ignore-certificate-errors')
 coptions.add_argument('--incognito')
 #coptions.add_argument('--headless')
 
-
+#Function to render full page content
 def render_page(url):
     driver = webdriver.Chrome(chrome_options=coptions)
     driver.get(url)
@@ -18,7 +19,7 @@ def render_page(url):
     # driver.quit()
     return r
 
-
+#Web scrapping
 for page in range(1,6):
     url = 'https://www.falabella.com.co/falabella-co/category/cat1360967/Televisores?page=' + \
         str(page)
@@ -35,4 +36,3 @@ for page in range(1,6):
         print("Nombre: {}".format(name.text.strip()))
         print("Precio: {}".format(price.text.strip()))
     print(len(containers))
-
